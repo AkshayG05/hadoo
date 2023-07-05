@@ -1,0 +1,103 @@
+Q2 YARN WORDCOUNT
+ #wget https://raw.githubusercontent.com/HortonworksUniversity/Ops_Labs/master/const.txt
+ #sudo -u hdfs hadoop fs -chown root  /user
+ #hdfs dfs -put const.txt /user
+  su - hdfs
+  cd /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/
+  ls -lrt | grep -i examples
+  yarn jar ./hadoop-mapreduce-examples.jar wordcount /user/root/const.txt /user/root/result3
+  hdfs dfs -ls /user/root/result3
+  hdfs dfs -cat /user/root/result3/part-r-00000
+   
+=================output============
+
+[root@manu hadoop-mapreduce]# yarn jar ./hadoop-mapreduce-examples.jar wordcount /user/root/const.txt /user/root/result10
+WARNING: YARN_OPTS has been replaced by HADOOP_OPTS. Using value of YARN_OPTS.
+23/06/25 18:14:40 INFO client.RMProxy: Connecting to ResourceManager at manu/192.168.82.158:8032
+23/06/25 18:14:40 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /user/root/.staging/job_1687689214552_0009
+23/06/25 18:14:40 INFO input.FileInputFormat: Total input files to process : 1
+23/06/25 18:14:40 INFO mapreduce.JobSubmitter: number of splits:1
+23/06/25 18:14:40 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1687689214552_0009
+23/06/25 18:14:40 INFO mapreduce.JobSubmitter: Executing with tokens: []
+23/06/25 18:14:40 INFO conf.Configuration: resource-types.xml not found
+23/06/25 18:14:40 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+23/06/25 18:14:40 INFO impl.YarnClientImpl: Submitted application application_1687689214552_0009
+23/06/25 18:14:40 INFO mapreduce.Job: The url to track the job: http://manu:8088/proxy/application_1687689214552_0009/
+23/06/25 18:14:40 INFO mapreduce.Job: Running job: job_1687689214552_0009
+23/06/25 18:14:43 INFO mapreduce.Job: Job job_1687689214552_0009 running in uber mode : false
+23/06/25 18:14:43 INFO mapreduce.Job:  map 0% reduce 0%
+23/06/25 18:14:47 INFO mapreduce.Job:  map 100% reduce 0%
+23/06/25 18:14:53 INFO mapreduce.Job:  map 100% reduce 100%
+23/06/25 18:14:53 INFO mapreduce.Job: Job job_1687689214552_0009 completed successfully
+23/06/25 18:14:53 INFO mapreduce.Job: Counters: 54
+        File System Counters
+                FILE: Number of bytes read=17224
+                FILE: Number of bytes written=2252977
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=45220
+                HDFS: Number of bytes written=17261
+               HDFS: Number of read operations=43
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=16
+                HDFS: Number of bytes read erasure-coded=0
+        Job Counters
+                Launched map tasks=1
+                Launched reduce tasks=8
+                Data-local map tasks=1
+                Total time spent by all maps in occupied slots (ms)=1197
+                Total time spent by all reduces in occupied slots (ms)=21387
+                Total time spent by all map tasks (ms)=1197
+                Total time spent by all reduce tasks (ms)=21387
+                Total vcore-milliseconds taken by all map tasks=1197
+                Total vcore-milliseconds taken by all reduce tasks=21387
+                Total megabyte-milliseconds taken by all map tasks=1225728
+                Total megabyte-milliseconds taken by all reduce tasks=21900288
+        Map-Reduce Framework
+                Map input records=872
+                Map output records=7652
+                Map output bytes=75556
+                Map output materialized bytes=17192
+                Input split bytes=101
+                Combine input records=7652
+                Combine output records=1697
+                Reduce input groups=1697
+                Reduce shuffle bytes=17192
+                Reduce input records=1697
+                Reduce output records=1697
+                Spilled Records=3394
+                Shuffled Maps =8
+                Failed Shuffles=0
+                Merged Map outputs=8
+                GC time elapsed (ms)=973
+                CPU time spent (ms)=5940
+                Physical memory (bytes) snapshot=3289198592
+                Virtual memory (bytes) snapshot=27998117888
+                Total committed heap usage (bytes)=4281335808
+                Peak Map Physical memory (bytes)=569040896
+                Peak Map Virtual memory (bytes)=3103346688
+                Peak Reduce Physical memory (bytes)=360255488
+                Peak Reduce Virtual memory (bytes)=3117715456
+        Shuffle Errors
+                BAD_ID=0
+                CONNECTION=0
+                IO_ERROR=0
+                WRONG_LENGTH=0
+                WRONG_MAP=0
+                WRONG_REDUCE=0
+        File Input Format Counters
+                Bytes Read=45119
+        File Output Format Counters
+                Bytes Written=17261
+[root@manu hadoop-mapreduce]# hdfs dfs -ls /user/root/result10
+Found 9 items
+-rw-r--r--   3 root root          0 2023-06-25 18:14 /user/root/result10/_SUCCESS
+-rw-r--r--   3 root root       2100 2023-06-25 18:14 /user/root/result10/part-r-00000
+-rw-r--r--   3 root root       2093 2023-06-25 18:14 /user/root/result10/part-r-00001
+-rw-r--r--   3 root root       2029 2023-06-25 18:14 /user/root/result10/part-r-00002
+-rw-r--r--   3 root root       2284 2023-06-25 18:14 /user/root/result10/part-r-00003
+-rw-r--r--   3 root root       2160 2023-06-25 18:14 /user/root/result10/part-r-00004
+-rw-r--r--   3 root root       2367 2023-06-25 18:14 /user/root/result10/part-r-00005
+-rw-r--r--   3 root root       2329 2023-06-25 18:14 /user/root/result10/part-r-00006
+-rw-r--r--   3 root root       1899 2023-06-25 18:14 /user/root/result10/part-r-00007

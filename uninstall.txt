@@ -1,0 +1,7 @@
+*****************UNINSTALLATION****************************
+
+1 stop all services from cloudera manager
+2 yum -qa | grep -i cloudera
+3 yum remove cloudera*
+4 rm -rf /opt/cloudera
+5 rm -rf /etc/cloudera-scm-agent

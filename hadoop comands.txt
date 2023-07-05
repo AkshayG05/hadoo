@@ -1,0 +1,56 @@
+#################################  comand for HDFS  #################################
+* do all this command in root#
+
+1. hdfs dfs -ls /user
+
+2. hdfs dfs -mkdir /user/root
+
+3.  hdfs dfs -put /root/file.txt  /user/root/demo
+
+4. sudo -u hdfs hadoop fs -chown root /user/root/demo
+
+5. chsh -s /bin/bash hdfs......to change shell in hdfs
+
+6. su - hdfs .......to login in hdfs shell
+
+7. hdfs dfs -ls /user/root/demo   \____________ check file.txt in demo direcotry
+
+######################### For HIVE #####################################################
+
+1. [root@node1 ~]# hdfs dfs -ls  /user/hive/cdac
+
+2. [root@node1 ~]# hdfs dfs -mkdir /user/hive/cdac
+
+3.  sudo -u hdfs hadoop fs -chown root /user/hive \__________ if permission denide then use this command
+
+4. [root@node1 ~]# hdfs dfs -put /root/test.txt /user/hive/cdac
+
+5.  [root@node1 ~]# hdfs dfs -ls  /user/hive/cdac
+
+6.  [root@node1 ~]# chsh -s /bin/bash hive
+      to change shell in hive
+7.[root@node1 ~]# su - hive
+
+8. [hive@node1 ~]$ hive
+
+9.beeline> !connect jdbc:hive2:// \\______ or for vm you can only use hive to go in hive envirnment
+ enter username: hive
+ enter password: hive
+
+10. to create external table in hive use following command
+
+ create external table student(id int, name string)row format delimited fields terminated by '\t' location '/user/hive/cdac';
+
+11. to see our table structure
+
+ select * from student;
+#########  for managed table ########################
+
+1. [root@node1 ~]# hive
+
+2.create managed table cdac(id int, name string, address string);
+
+3.insert into cdac values(1, "student","pashan"),(2, "student2","pune"),(3, "student3","Acts");
+
+4.select * from cdac;
+

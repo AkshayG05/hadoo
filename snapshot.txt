@@ -1,0 +1,13 @@
+==========================SNAPSHOT=====================
+su - hdfs
+hdfs dfs -mkdir /tmp/snap
+vim shot.txt
+hdfs dfs -put shot.txt /tmp/snap
+hdfs dfs -ls /tmp/snap
+hdfs dfs -ls /tmp/snap/.snapshot
+hdfs dfs -createSnapshot /tmp/snap/   ///////////on browser hdfs/filebrowser/dir-name/-----enablesnapshot
+hdfs dfs -ls /tmp/snap/.snapshot/s20230626-125307.838------------------------------ls /tmp/snap/.snapshot
+hdfs dfs -deleteSnapshot /tmp/snap s20230626-125307.838
+hdfs dfs -ls /tmp/snap/.snapshot
+hdfs dfs -deleteSnapshot /tmp/myfile/.snapshot s20230626-125307.838
+hdfs dfs -allowSnapshot /user/tmp/data

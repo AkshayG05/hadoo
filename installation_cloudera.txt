@@ -1,0 +1,30 @@
+$ wget https://archive.cloudera.com/cm7/7.4.4/cloudera-manager-installer.bin
+
+ 
+$ chmod u+x cloudera-manager-installer.bin
+ 
+
+$ sudo ./cloudera-manager-installer.bin
+
+=========================================================
+	1  hostnamectl set-hostname master
+    2  exec bash
+    3  systemctl stop firewalld.service 
+    4  systemctl disable firewalld.service 
+    5  setenforce 0
+    6  sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+    7  getenforce
+    8  ip a | grep inet
+    9  vim /etc/hosts
+          192.168.20.169 master
+                                         :wq         for save & exit
+   10  yum install httpd* java* webserver*
+   11  rpm -qa | grep java
+   12  systemctl status httpd
+   13  systemctl start httpd
+   14  systemctl enable httpd
+   15  wget https://archive.cloudera.com/cm7/7.4.4/cloudera-manager-installer.bin
+   16  chmod u+x cloudera-manager-installer.bin
+   17  ./cloudera-manager-installer.bin
+
+
